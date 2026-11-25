@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Parita Kapadia, product designer. Previously Dream11, YouTube, Google and Microsoft.">
+<meta name="author" content="Parita Kapadia">
+<meta property="og:title" content="Parita Kapadia, Product Designer">
+<meta property="og:description" content="Product designer. Previously Dream11, YouTube, Google and Microsoft.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paritakapadia.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23000'/%3E%3Ctext x='16' y='21.5' font-family='Arial' font-size='15' font-weight='600' fill='%23fff' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<title>Parita Kapadia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+<style>
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+
+/* Layout mirrors lalau.ca: fixed pill nav top right, centered hero, featured rows (image 2/3 left, text 1/3 right), 3-up grid of more work, contact footer. Sizes scale with viewport width. */
+:root {
+  --bg: #FFFFFF;
+  --fg: #000000;
+  --placeholder: #F2F2F2;
+  --placeholder-fg: rgba(0,0,0,0.35);
+  /* Watch Along: near-white (top) to muted navy-purple (bottom) */
+  --wa-bg: linear-gradient(180deg, #FCFCFE 0%, #DCDDE9 38%, #A8AAC4 72%, #6E7194 100%);
+  --sy-bg: linear-gradient(155deg, #F3F3F5 0%, #F6EBEB 45%, #F2CFCF 100%);
+  --yb-bg: linear-gradient(155deg, #7591C0 0%, #BCCBE5 45%, #FFFFFF 100%);
+  --cg-bg: linear-gradient(155deg, #FFFFFF 0%, #F6F3EF 50%, #E7E1DA 100%);
+  /* AI co-host: teal to light grey (option 3A) */
+  --ai-bg: linear-gradient(45deg, #6E97A1 0%, #9DB9BF 30%, #CFDDDF 62%, #F8FAFA 100%);
+  --pv-bg: linear-gradient(155deg, #D6E8FA 0%, #EAF3FC 50%, #FFFFFF 100%);
+  /* Frosted glass for the name and nav pills: translucent white, strong blur, a light top highlight and a soft lift */
+  --nav-glass: linear-gradient(160deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.38) 55%, rgba(255,255,255,0.5) 100%);
+  --nav-glass-blur: blur(22px) saturate(180%);
+  --nav-glass-shadow: inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -1px 0 rgba(255,255,255,0.25), 0 6px 24px -8px rgba(20,24,40,0.18);
+  --font: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-head: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --pad: max(24px, 5vw);
+  /* One shared 20px step (on a 1728px screen) for nav, "Select work", body text and the About status line */
+  --fs-20: clamp(17px, 1.16vw, 30px);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  padding-left: max(var(--pad), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--pad), env(safe-area-inset-right, 0px));
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+
+/* Header */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 20px);
+  padding-bottom: 20px;
+  pointer-events: none;
+}
+.main-nav { display: flex; justify-content: flex-end; align-items: center; }
+.nav-right {
+  display: flex; align-items: center; gap: 4px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--nav-glass);
+  box-shadow: var(--nav-glass-shadow);
+  -webkit-backdrop-filter: var(--nav-glass-blur); backdrop-filter: var(--nav-glass-blur);
+  pointer-events: auto;
+}
+.nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+  display: block; padding: 8px 14px; border-radius: 999px;
+  font-family: var(--font-head); font-size: var(--fs-20); font-weight: 500;
+}
+.nav-links a { transition: color 0.15s ease; display: inline-flex; align-items: center; gap: 6px; }
+/* Small arrow: About points forward, Work points back */
+.nav-arrow { width: 0.8em; height: 0.8em; flex: none; }
+.nav-links a:hover { color: #1D4ED8; }
+
+/* Hero */
+/* Hero: name in the left two thirds, 16:9 photo in the right third, on the same 3-column grid as the projects */
+/* Name sits at the top, level with the nav; "Select work" and the first project follow right below */
+.hero {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: max(24px, 2.5vw); align-items: start;
+  padding-block: 20px max(112px, 6.5vw);
+}
+.hero-text { grid-column: span 2; min-width: 0; }
+.section-title {
+  font-family: var(--font-head); font-size: var(--fs-20); font-weight: 500; line-height: 1.35;
+  margin: 0 0 max(24px, 1.5vw);
+}
+.about-photo {
+  grid-column: 1 / 2; grid-row: 1; margin: 0 0 24px; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 24px; overflow: hidden; background: var(--placeholder);
+}
+.about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+h1, h2 { font-family: var(--font-head); }
+.hero h1 {
+  font-size: clamp(44px, 5vw, 128px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+}
+.job-title {
+  background: linear-gradient(90deg, #2563EB 0%, #60A5FA 18%, #38BDF8 34%, #1D4ED8 52%, #3B82F6 70%, #7DD3FC 86%, #2563EB 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: animateBackgroundGradient 5s linear infinite;
+}
+@keyframes animateBackgroundGradient { from { background-position: 0% 50%; } to { background-position: -200% 50%; } }
+.hero p {
+  font-size: clamp(19px, 1.5vw, 38.4px);
+  line-height: 1.35;
+  margin: 0;
+  max-width: 40ch;
+}
+
+/* Work */
+.work-grid { display: grid; gap: max(96px, 7.5vw); }
+.work-item {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: max(24px, 2.5vw);
+}
+.work-item-image {
+  grid-column: span 2;
+  aspect-ratio: 3 / 2; max-width: 100%;
+  border-radius: 24px;
+  background: var(--placeholder);
+  display: grid; place-items: center;
+  color: var(--placeholder-fg);
+  font-size: 15px;
+  overflow: hidden;
+}
+.work-item-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Thumbnail with three looping phone screens */
+.work-item-image.screens {
+  container-type: inline-size;
+  display: flex; align-items: center; justify-content: center; gap: 3.5cqw;
+}
+.work-item-image.screens.wa { background: var(--wa-bg); }
+.work-item-image.screens.sy { background: var(--sy-bg); }
+.work-item-image.screens.yb { background: var(--yb-bg); }
+.yb .phone { aspect-ratio: 720 / 1674; }
+.work-item-image.screens.cg { background: var(--cg-bg); }
+.work-item-image.ai { background: var(--ai-bg); }
+.ai .phone { aspect-ratio: 788 / 1748; }
+.work-item-image.pv { container-type: inline-size; background: var(--pv-bg); }
+.coming-soon { font-family: var(--font-head); font-weight: 500; font-size: 4.2cqw; letter-spacing: -0.01em; color: #1F3B63; }
+/* Creator Growth: the slide's own phones, kept exactly as composed */
+.work-item-image img.cg-devices { width: 78cqw; height: auto; object-fit: contain; display: block; }
+.phone {
+  width: 24cqw; aspect-ratio: 698 / 1528; flex: none;
+  border-radius: 2.4cqw; overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 0.25cqw rgba(0,0,0,0.85), 0 2cqw 4cqw -1cqw rgba(40,20,90,0.35);
+}
+.phone video, .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.screens .tv { width: 35cqw; height: auto; flex: none; display: block; }
+/* Supervised YouTube: slide proportions, devices over one row of logo labels */
+.sy-grid {
+  display: grid;
+  grid-template-columns: 14cqw 14.4cqw 51.3cqw;
+  column-gap: 3.2cqw; row-gap: 2.4cqw;
+  align-items: center; justify-items: center;
+}
+.sy-grid .phone { width: 14cqw; border-radius: 1.4cqw; }
+.sy-grid .tv { width: 51.3cqw; }
+/* Logos share one row and a common center line; heights are tuned so each reads the same size */
+.work-item-image img.sy-logo { width: auto; display: block; align-self: center; }
+.work-item-image img.sy-logo.yt { height: 2.2cqw; }
+.work-item-image img.sy-logo.ytm { height: 2.95cqw; }
+.work-item-image img.sy-logo.ga { height: 2.7cqw; }
+.sy-logo-cell { position: relative; width: 100%; height: 2.95cqw; align-self: center; }
+/* Assistant logo is centered under the speaker, 90.7% across the TV image */
+.sy-logo-cell .sy-logo { position: absolute; left: 90.7%; top: 50%; transform: translate(-50%, -50%); }
+.work-item-text { padding-top: 32px; min-width: 0; }
+.work-item-text h2 {
+  font-size: clamp(26px, 2vw, 51px);
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0 0 12px;
+}
+.work-item-text p {
+  font-size: var(--fs-20);
+  line-height: 1.5;
+  opacity: 0.7;
+  margin: 0 0 1.5em;
+}
+
+.work-item-text b { font-weight: 500; }
+.work-meta {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+  margin: 0.5em 0 0; font-size: clamp(14px, 0.9vw, 23px); line-height: 1.4;
+}
+.work-meta dt { opacity: 0.5; margin: 0 0 4px; }
+.work-meta dd { margin: 0; overflow-wrap: break-word; }
+
+.more-works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: max(24px, 2.5vw);
+  margin-top: max(96px, 7.5vw);
+}
+.more-works-grid .work-item { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.more-works-grid .work-item-image { grid-column: auto; aspect-ratio: 4 / 5; }
+.more-works-grid .work-item-text { padding-top: 0; }
+.more-works-grid .work-item-text h2 { font-size: clamp(19px, 1.2vw, 30.7px); margin: 0; }
+
+/* Footer (matches lalau.ca) */
+/* Contact sits on About, between the status line and the body text */
+/* Desktop: contact sits under the photo. Phones: it follows the intro paragraph */
+.about-contact { grid-column: 1 / 2; grid-row: 2; align-self: start; margin: 0 0 max(112px, 7vw); }
+.footer-contact-intro { font-size: clamp(16px, 0.78vw, 20px); opacity: 0.7; margin: 0; }
+/* Email with a small circular copy button to its right */
+/* Two units on one line: [mail icon + email], then LinkedIn (40px apart).
+   Inside the email unit the icon sits 8px from the address. Icons are 24px in 40px tap targets; the row is nudged so the first icon lines up with the text */
+.contact-row { display: flex; flex-wrap: nowrap; align-items: center; gap: 24px; margin-left: -8px; }
+@media (max-width: 400px) { .contact-row { gap: 12px; } }
+.contact-email-unit { display: flex; align-items: center; position: relative; }
+.contact-icon { display: flex; padding: 8px; color: var(--fg); border-radius: 999px; transition: background-color 0.2s ease; }
+.contact-icon svg { width: 24px; height: 24px; display: block; }
+.contact-icon:hover, .contact-icon:focus-visible { background-color: rgba(0,0,0,0.06); }
+.footer-contact-email {
+  font: 500 var(--fs-20)/1.35 var(--font); color: var(--fg); margin: 0;
+  overflow-wrap: anywhere; min-width: 0;
+  /* Clicking the address copies it; "Copied" appears beside it */
+  background: none; border: 0; padding: 8px 8px 8px 0; border-radius: 6px; cursor: copy; text-align: left;
+  transition: color 0.15s ease;
+}
+.footer-contact-email:hover { color: #1D4ED8; }
+/* "Copied" appears just under the address, out of the flow, so nothing on the page moves */
+.copy-tip { position: absolute; left: 40px; top: 100%; margin-top: -4px; font-size: 15px; opacity: 0.6; white-space: nowrap; pointer-events: none; }
+.copy-tip:empty { display: none; }
+/* Social links under contact, as on lalau.ca: 24px icons in 56px tap targets, nudged so the first icon lines up with the text */
+.social-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+/* Hover state: a light grey circle fills the 56px tap area behind the icon */
+.social-links a:hover, .social-links a:focus-visible { background-color: rgba(0,0,0,0.06); }
+.social-links svg { width: 24px; height: 24px; display: block; }
+
+/* About: text spans the left two thirds of the same 3-column grid as the home page thumbnails */
+.about-view { padding-top: max(140px, 7.8vw); padding-bottom: max(96px, 6vw); }
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: max(24px, 2.5vw);
+}
+.about-headline {
+  grid-column: 1 / 3;
+  font-size: clamp(26px, 2vw, 51px); /* 35px on a 1728px screen, same as project titles */
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6em;
+}
+/* Title and intro sit beside the photo, top-aligned, from column 2 to the middle of column 3 */
+.about-intro-block { grid-column: 2 / 4; width: calc(75% + 0.25 * max(24px, 2.5vw)); grid-row: 1 / span 2; align-self: start; min-width: 0; margin-bottom: max(112px, 7vw); padding-top: 32px; /* same offset as text beside images on the home page */ }
+.about-intro-block .about-headline, .about-intro-block .about-intro { grid-column: auto; }
+.about-intro-block .about-intro { margin-bottom: 0; }
+/* Intro paragraph under the greeting: 24px on a 1728px screen, Regular */
+.about-intro {
+  grid-column: 1 / 3;
+  font-family: var(--font-head); font-size: clamp(20px, 1.39vw, 36px); font-weight: 400; line-height: 1.5;
+  margin: 0 0 max(64px, 4vw);
+}
+/* One break after the name; "based in San Francisco" stays on one line on wide screens, and names never split */
+.about-headline .nowrap { white-space: nowrap; }
+@media (max-width: 860px) { .about-headline .nowrap { white-space: normal; } }
+.about-body b { font-weight: 500; }
+/* Small label above the bio, styled like "Get in touch" */
+.about-body-title { grid-column: 1 / 3; font-weight: 400; line-height: 1.35; margin: 0 0 5px; }
+/* Body text in columns 1–2, left-aligned with everything above it */
+.about-body { grid-column: 1 / 3; display: flex; flex-direction: column; gap: 1.2em; min-width: 0; }
+.about-body p {
+  font-size: var(--fs-20);
+  line-height: 1.6;
+  margin: 0;
+}
+.experience { grid-column: 1 / 3; display: flex; flex-direction: column; gap: max(24px, 1.9vw); margin-top: max(96px, 5vw); }
+.experience h2 { font-size: clamp(22px, 2vw, 51px); font-weight: 400; line-height: 1.5; margin: 0; }
+.job {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr); gap: 16px;
+  font-size: clamp(15px, 0.94vw, 24px); line-height: 1.4;
+}
+.job .location { text-align: left; }
+
+/* Views */
+body.is-about #home { display: none; }
+body:not(.is-about) #about { display: none; }
+/* One nav link that points to the other view; contact lives at the end of About only */
+body.is-about .nav-to-about, body:not(.is-about) .nav-to-work { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .job-title { animation: none; }
+}
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); row-gap: 32px; min-height: 0; padding-block: 120px 48px; }
+  .hero-text { grid-column: auto; }
+  /* Phones: one column, spacing set per item so the bio label can hug the text like "Get in touch" */
+  .about-photo { grid-column: auto; grid-row: auto; margin-bottom: 40px; }
+  .about-intro-block { grid-column: auto; grid-row: auto; width: auto; padding-top: 0; margin-bottom: 40px; }
+  .about-contact { grid-row: auto; margin-bottom: 64px; }
+  .work-item { grid-template-columns: minmax(0, 1fr); }
+  .work-item-image { grid-column: auto; }
+  .work-item-text { padding-top: 0; }
+  .more-works-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
+  .about-headline, .about-intro, .about-contact, .about-body-title, .about-body, .experience { grid-column: auto; }
+  .experience { margin-top: 40px; }
+}
+@media (max-width: 540px) {
+  .more-works-grid { grid-template-columns: minmax(0, 1fr); }
+  .nav-links a { padding: 8px 10px; }
+  .main-nav { justify-content: flex-end; }
+  .job { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+  .job .location { grid-column: 2; text-align: left; opacity: 0.7; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <nav class="main-nav" aria-label="Main">
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li class="nav-to-about"><a href="#about">About <svg class="nav-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></li>
+          <li class="nav-to-work"><a href="#home"><svg class="nav-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg> Work</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div id="home">
+  <section class="hero container" id="hero">
+    <div class="hero-text">
+      <h1>Parita Kapadia<br><span class="job-title">Product Design</span></h1>
+    </div>
+  </section>
+
+  <section class="container" id="work" aria-labelledby="work-title">
+    <h2 class="section-title" id="work-title">Select work</h2>
+    <div class="work-grid">
+      <div class="work-item">
+        <div class="work-item-image screens wa">
+          <div class="phone"><video src="media/watch-along/reactions.mp4" poster="media/watch-along/reactions.jpg" muted loop playsinline preload="metadata" aria-label="Livestream reactions and chat during the match"></video></div>
+          <div class="phone"><video src="media/watch-along/shoutout.mp4" poster="media/watch-along/shoutout.jpg" muted loop playsinline preload="metadata" aria-label="Shout Out: a fan pays to send a message to the creator"></video></div>
+          <div class="phone"><video src="media/watch-along/rivalry-polls.mp4" poster="media/watch-along/rivalry-polls.jpg" muted loop playsinline preload="metadata" aria-label="Rivalry Poll: fans vote on Player of the Match"></video></div>
+        </div>
+        <div class="work-item-text">
+          <h2>Watch Alongs on Dream11</h2>
+          <p>Dream11 is India’s largest fantasy sports platform, a household name with over 250 million users. As Head of Design, I led the team through a major business pivot to build Watch Alongs, creator-led livestreams where fans follow the match, react, and celebrate together.</p>
+          <p>I was responsible for the end-to-end user experience, building viewer, creator, and monetization experiences from 0 to 1. My work focused on setting clear product direction, keeping the experience coherent through rapid experimentation, and driving decisive design execution to launch in under two months, ahead of the Cricket World Cup.</p>
+          <dl class="work-meta">
+            <div><dt>Role</dt><dd>Head of Design</dd></div>
+            <div><dt>Timeline</dt><dd>2025-2026</dd></div>
+            <div><dt>Company</dt><dd>Dream11</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-item-image screens ai">
+          <div class="phone"><video src="media/ai-cohost/stage.mp4" poster="media/ai-cohost/stage.jpg" muted loop playsinline preload="metadata" aria-label="AI co-host on stage with the creator while fans chat and send reactions"></video></div>
+        </div>
+        <div class="work-item-text">
+          <h2>AI co-host for Live Sports</h2>
+          <p>As part of Dream11’s Watch Alongs, a small team of data scientists and designers created Googly Bhai, a multilingual voice AI co-host who follows live cricket and banters with creators and fans to keep the crowd entertained.</p>
+          <p>I owned the experience quality bar, defining evaluation criteria for conversation design, personality, and repeat engagement. Within weeks, creators were inviting an AI co-host into nearly half their streams, with higher watch time, engagement, and spending than their usual streams.</p>
+          <dl class="work-meta">
+            <div><dt>Role</dt><dd>Head of Design</dd></div>
+            <div><dt>Timeline</dt><dd>2025-2026</dd></div>
+            <div><dt>Company</dt><dd>Dream11</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-item-image screens sy">
+          <div class="sy-grid">
+            <div class="phone"><img src="media/supervised-youtube/youtube-main.jpg" alt="Supervised YouTube Explore tab with age-appropriate videos" loading="lazy"></div>
+            <div class="phone"><img src="media/supervised-youtube/youtube-music.jpg" alt="YouTube Music album with a note that some songs aren't available" loading="lazy"></div>
+            <img class="tv" src="media/supervised-youtube/living-room-assistant.webp" alt="YouTube on TV showing a supervised profile, next to a Google Assistant speaker declining an explicit song" loading="lazy">
+            <img class="sy-logo yt" src="media/supervised-youtube/logo-youtube.png" alt="YouTube" loading="lazy">
+            <img class="sy-logo ytm" src="media/supervised-youtube/logo-youtube-music.png" alt="YouTube Music" loading="lazy">
+            <div class="sy-logo-cell"><img class="sy-logo ga" src="media/supervised-youtube/logo-google-assistant.png" alt="Google Assistant" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="work-item-text">
+          <h2>Supervised YouTube</h2>
+          <p>I led the launch of YouTube Supervised Experiences, a safer version of YouTube for 100 million families, built under regulatory scrutiny. I approached it as a systems problem, drawing on user research to establish product and design guidelines adopted across YouTube’s ecosystem, to make hundreds of features age-appropriate.</p>
+          <p>It found clear product-market fit, with 81% retention, compared with 60% for YouTube Kids, and earned praise from child development experts for balancing tween independence with safety.</p>
+          <dl class="work-meta">
+            <div><dt>Role</dt><dd>Senior Product Designer</dd></div>
+            <div><dt>Timeline</dt><dd>2020</dd></div>
+            <div><dt>Company</dt><dd>YouTube</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-item-image screens yb">
+          <div class="phone"><img src="media/youtube-badges/badges-list.jpg" alt="Badges page listing collectible 3D badges like Course graduate, Top listener and Game expert" loading="lazy"></div>
+          <div class="phone"><img src="media/youtube-badges/badge-detail.jpg" alt="Top listener badge detail with a 3D headphones trophy and a Share your badge button" loading="lazy"></div>
+        </div>
+        <div class="work-item-text">
+          <h2>YouTube Badges</h2>
+          <p>At YouTube, we reimagined badges as collectible 3D trophies young users would be proud to show off. As Staff UX Manager on Youth, I set the vision and rallied teams around a new direction for YouTube’s visual style.</p>
+          <dl class="work-meta">
+            <div><dt>Role</dt><dd>Staff Product Design Manager</dd></div>
+            <div><dt>Timeline</dt><dd>2023</dd></div>
+            <div><dt>Company</dt><dd>YouTube</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-item-image screens cg">
+          <img class="cg-devices" src="media/creator-growth/pf-devices.webp" alt="Four iterations of the public figure search card on Android phones, from plain results to the final card with a verified channel and Subscribe button" loading="lazy">
+        </div>
+        <div class="work-item-text">
+          <h2>YouTube Creator Growth</h2>
+          <p>As the sole designer for YouTube’s Public Figure creator program, I used research to find growth opportunities that helped creators build an audience on YouTube, where many expect a slower payoff than on other creator platforms.</p>
+          <p>Our growth launches turned a 10-channel pilot into a self-sustaining program with 1,098 successful channels in two years, over 100× growth.</p>
+          <dl class="work-meta">
+            <div><dt>Role</dt><dd>Senior Product Designer</dd></div>
+            <div><dt>Timeline</dt><dd>2018-2019</dd></div>
+            <div><dt>Company</dt><dd>YouTube</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <div class="work-item-image pv"><span class="coming-soon">Coming soon</span></div>
+        <div class="work-item-text">
+          <h2>PlayVision AI</h2>
+          <p>PlayVision AI’s computer vision model tracks every point of a padel match. As a founding designer, my role was to turn that technology into a consumer product that recreational players would value, and to design the app from 0 to 1.</p>
+          <dl class="work-meta">
+            <div><dt>Role</dt><dd>Founding Designer</dd></div>
+            <div><dt>Timeline</dt><dd>2026</dd></div>
+            <div><dt>Company</dt><dd>PlayVision AI</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="about" class="about-view container">
+  <div class="about-grid">
+    <figure class="about-photo"><img src="media/profile/parita.jpg" srcset="media/profile/parita-1088.jpg 1088w, media/profile/parita.jpg 2176w" sizes="(max-width: 860px) 100vw, 29vw" alt="Parita Kapadia smiling on a terrace with a city skyline behind her"></figure>
+    <div class="about-intro-block">
+    <h1 class="about-headline">Hi, I’m Parita, a product designer based in San&nbsp;Francisco,&nbsp;CA.</h1>
+    <p class="about-intro">I design with care, clarity, and purpose to create products that matter to people. I’m currently building in stealth. Previously I led design teams at YouTube.</p>
+    </div>
+    <section class="about-contact" id="contact" aria-label="Contact">
+    <p class="footer-contact-intro">Get in touch</p>
+    <div class="contact-row">
+      <div class="contact-email-unit">
+        <a class="contact-icon" href="mailto:parita.kapadia@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4.2l-8 5-8-5V6l8 5 8-5v2.2z"/></svg></a>
+        <button class="footer-contact-email" id="email" type="button" title="Copy email address" aria-describedby="copy-tip">parita.kapadia@gmail.com</button>
+        <span class="copy-tip" id="copy-tip" role="status" aria-live="polite"></span>
+      </div>
+      <ul class="social-links">
+        <li><a class="contact-icon" href="https://www.linkedin.com/in/paritakapadia/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></a></li>
+      </ul>
+    </div>
+    </section>
+    <h2 class="footer-contact-intro about-body-title">About, unabridged</h2>
+    <div class="about-body">
+      <p>I’ve always loved building things. What started with LEGO, puzzles, and ambitious sandcastles evolved into working with wood and metal as an industrial design student.</p>
+      <p>My curiosity about people and love of making things took me to Silicon Valley, where I spent a decade as a designer. I helped shape <b>Windows 10’s adaptive interface at Microsoft, a pioneering ML-powered advertising product at Google, and a ‘PG’ version of YouTube</b>. Along the way, I learned to simplify complex systems, design for global audiences, and make products feel intuitive and considered.</p>
+      <p>During a temporary return to Mumbai to be closer to family, I joined Dream11, one of India’s largest consumer tech startups. As Head of Design, I led the team through a major business pivot, <b>building a sports livestreaming product from 0 to 1</b>. I’ve learned to thrive in unfamiliar territory, whether shaping a new product vision, elevating a team’s craft, or getting hands-on to bring ideas to life.</p>
+      <p><b>As varied as these challenges have been, my starting point has stayed the same:</b> understanding the people we’re building for and identifying where human needs and business opportunities intersect. I believe good design begins with asking the right questions. I lead with a clear point of view and love bringing people together around what’s possible. I’m always up for tough questions, ambitious ideas, and exploring what technology makes possible.</p>
+      <p>Outside work, I enjoy tennis, hiking, and looking at the world through my camera.</p>
+    </div>
+    <section class="experience" aria-label="Experience">
+      <h2>Experience</h2>
+      <div class="job"><div class="dates">2026 –<br>Present</div><div class="role">Stealth AI Startup<br>Founding Designer</div><div class="location">Mumbai<br>India</div></div>
+      <div class="job"><div class="dates">2025 –<br>2026</div><div class="role">Dream11<br>Head of Design</div><div class="location">Mumbai<br>India</div></div>
+      <div class="job"><div class="dates">2024 –<br>2025</div><div class="role">Dream11<br>Senior Director, Product Design</div><div class="location">Mumbai<br>India</div></div>
+      <div class="job"><div class="dates">2020 –<br>2023</div><div class="role">YouTube<br>Senior Manager, Product Design</div><div class="location">San Bruno<br>California</div></div>
+      <div class="job"><div class="dates">2018 –<br>2020</div><div class="role">YouTube<br>Senior Interaction Designer</div><div class="location">San Bruno<br>California</div></div>
+      <div class="job"><div class="dates">2016 –<br>2018</div><div class="role">Google Ads<br>Interaction Designer</div><div class="location">Mountain View<br>California</div></div>
+      <div class="job"><div class="dates">2013 –<br>2016</div><div class="role">Microsoft<br>Interaction Designer, Windows</div><div class="location">Redmond<br>Washington</div></div>
+    </section>
+    <section class="experience" aria-label="Education">
+      <h2>Education</h2>
+      <div class="job"><div class="dates">2021 –<br>2022</div><div class="role">Stanford Graduate School of Business<br>Executive MBA</div><div class="location">Palo Alto<br>California</div></div>
+      <div class="job"><div class="dates">2011 –<br>2013</div><div class="role">Carnegie Mellon University<br>Master of Design, Interaction Design</div><div class="location">Pittsburgh<br>Pennsylvania</div></div>
+      <div class="job"><div class="dates">2006 –<br>2010</div><div class="role">Symbiosis Institute of Design<br>Bachelor of Design, Industrial Design</div><div class="location">Pune<br>India</div></div>
+    </section>
+  </div>
+</div>
+</main>
+
+
+<script>
+(function () {
+
+  var email = document.getElementById('email');
+  var btn = email;
+  var tip = document.getElementById('copy-tip');
+  btn.addEventListener('click', function () {
+    var text = email.textContent.trim();
+    function done() {
+      btn.classList.add('is-copied'); tip.textContent = 'Copied';
+      setTimeout(function () { btn.classList.remove('is-copied'); tip.textContent = ''; }, 1600);
+    }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      tip.textContent = /Mac/.test(navigator.platform) ? 'Press ⌘C to copy' : 'Press Ctrl+C to copy';
+      setTimeout(function () { tip.textContent = ''; }, 2400);
+    }
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+  // Play thumbnail videos only while visible; keep posters for reduced motion
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var vids = [].slice.call(document.querySelectorAll('.phone video'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !reduce.matches) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+        else e.target.pause();
+      });
+    }, { rootMargin: '200px' });
+    vids.forEach(function (v) { io.observe(v); });
+  } else if (!reduce.matches) {
+    vids.forEach(function (v) { v.autoplay = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+  }
+
+  function route() {
+    var h = location.hash.replace('#', '');
+    var about = h === 'about' || h === 'contact';
+    var wasAbout = document.body.classList.contains('is-about');
+    document.body.classList.toggle('is-about', about);
+    if (h === 'contact') { document.getElementById('contact').scrollIntoView(); return; }
+    if (about !== wasAbout || h === 'home' || h === 'about') window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
